@@ -187,9 +187,7 @@ struct TaskRow: View {
                         .font(.caption)
                         .foregroundColor(.blue)
                 } else if let expiryDate = benefit.expiryDate {
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd"
-                    Text("有效期至 \(formatter.string(from: expiryDate))")
+                    Text("有效期至 \(formattedExpiryDate(expiryDate))")
                         .font(.caption)
                         .foregroundColor(.orange)
                 }
@@ -197,6 +195,12 @@ struct TaskRow: View {
         }
         .padding(.vertical, 4)
         .opacity(benefit.isUsed ? 0.5 : 1.0)
+    }
+    
+    private func formattedExpiryDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 

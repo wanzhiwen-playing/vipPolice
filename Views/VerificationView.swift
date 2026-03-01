@@ -134,9 +134,7 @@ struct BenefitEditRow: View {
                         Text("每月\(resetDay)日重置")
                             .font(.caption)
                     } else if let expiryDate = benefit.expiryDate {
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy-MM-dd"
-                        Text("有效期至 \(formatter.string(from: expiryDate))")
+                        Text("有效期至 \(formattedExpiryDate(expiryDate))")
                             .font(.caption)
                     }
                 }
@@ -147,6 +145,12 @@ struct BenefitEditRow: View {
         .sheet(isPresented: $showingEditSheet) {
             BenefitEditSheet(benefit: $benefit)
         }
+    }
+    
+    private func formattedExpiryDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 

@@ -14,7 +14,7 @@ enum BenefitType: String, Codable, CaseIterable {
 }
 
 /// 单个权益
-struct Benefit: Identifiable, Codable {
+struct Benefit: Identifiable, Codable, Equatable {
     var id = UUID()
     var title: String                    // 权益名称（如：免邮券、红包）
     var type: BenefitType                // 类型（周期性/一次性）

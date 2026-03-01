@@ -66,7 +66,7 @@ enum Platform: String, Codable, CaseIterable {
 }
 
 /// 会员账号
-struct MemberAccount: Identifiable, Codable {
+struct MemberAccount: Identifiable, Codable, Equatable {
     var id = UUID()
     var platform: Platform                // 平台名称
     var customPlatformName: String?       // 自定义平台名（当 platform 为 custom 时使用）

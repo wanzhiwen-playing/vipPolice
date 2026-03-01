@@ -64,7 +64,7 @@ class DataManager: ObservableObject {
             }
         }
         
-        return tasks.sorted { $0.benefit.expiryDate ?? Date.distantFuture < $1.benefit.expiryDate ?? Date.distantFuture }
+        return tasks.sorted { $0.1.expiryDate ?? Date.distantFuture < $1.1.expiryDate ?? Date.distantFuture }
     }
     
     /// 获取即将过期的权益（用于通知）

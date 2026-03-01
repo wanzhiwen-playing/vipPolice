@@ -32,9 +32,7 @@ struct AccountDetailView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                         
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy-MM-dd"
-                        Text("更新于 \(formatter.string(from: account.lastUpdated))")
+                        Text("更新于 \(formattedDate(account.lastUpdated))")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -66,6 +64,18 @@ struct AccountDetailView: View {
         .listStyle(.insetGrouped)
         .navigationTitle("权益详情")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+    
+    private func formattedExpiryDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 
@@ -137,12 +147,8 @@ struct BenefitDetailRow: View {
                         .font(.caption)
                         .foregroundColor(.blue)
                 } else if let expiryDate = benefit.expiryDate {
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd"
-                    let dateString = formatter.string(from: expiryDate)
-                    
                     HStack {
-                        Text("有效期至 \(dateString)")
+                        Text("有效期至 \(formattedExpiryDate(expiryDate))")
                             .font(.caption)
                             .foregroundColor(.orange)
                         
