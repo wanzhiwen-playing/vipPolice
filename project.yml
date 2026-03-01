@@ -28,6 +28,9 @@ targets:
           - "*.md"
           - ".github"
           - ".git"
+          - "*.bat"
+          - "*.yml"
+          - ".gitignore"
     
     settings:
       base:
@@ -39,6 +42,14 @@ targets:
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO
+      
+      configs:
+        Debug:
+          SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+          ENABLE_PREVIEWS: YES
+        Release:
+          SWIFT_OPTIMIZATION_LEVEL: "-O"
+          ENABLE_PREVIEWS: NO
     
     dependencies: []
     
