@@ -128,6 +128,13 @@ struct TaskRow: View {
     let benefit: Benefit
     let onToggle: () -> Void
     
+    private var formattedExpiryDate: String {
+        guard let expiryDate = benefit.expiryDate else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: expiryDate)
+    }
+    
     var body: some View {
         HStack(spacing: 12) {
             // Checkbox
@@ -186,8 +193,8 @@ struct TaskRow: View {
                     Text("每月\(resetDay)日重置")
                         .font(.caption)
                         .foregroundColor(.blue)
-                } else if let expiryDate = benefit.expiryDate {
-                    Text("有效期至 \(formattedExpiryDate(expiryDate))")
+                } else if benefit.expiryDate != nil {
+                    Text("有效期至 \(formattedExpiryDate)")
                         .font(.caption)
                         .foregroundColor(.orange)
                 }
@@ -195,12 +202,6 @@ struct TaskRow: View {
         }
         .padding(.vertical, 4)
         .opacity(benefit.isUsed ? 0.5 : 1.0)
-    }
-    
-    private func formattedExpiryDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
     }
 }
 

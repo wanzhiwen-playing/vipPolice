@@ -86,6 +86,13 @@ struct BenefitDetailRow: View {
     let benefit: Benefit
     let onToggle: () -> Void
     
+    private var formattedExpiryDate: String {
+        guard let expiryDate = benefit.expiryDate else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: expiryDate)
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -146,9 +153,9 @@ struct BenefitDetailRow: View {
                     Text("每月\(resetDay)日重置")
                         .font(.caption)
                         .foregroundColor(.blue)
-                } else if let expiryDate = benefit.expiryDate {
+                } else if benefit.expiryDate != nil {
                     HStack {
-                        Text("有效期至 \(formattedExpiryDate(expiryDate))")
+                        Text("有效期至 \(formattedExpiryDate)")
                             .font(.caption)
                             .foregroundColor(.orange)
                         
