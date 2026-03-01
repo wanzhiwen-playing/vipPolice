@@ -1,6 +1,4 @@
 # XcodeGen 项目配置文件
-# 用于自动生成 Xcode 项目
-
 name: vipPolice
 
 options:
@@ -22,44 +20,18 @@ targets:
     
     info:
       path: Info.plist
-      properties:
-        CFBundleShortVersionString: "1.0.0"
-        CFBundleVersion: "1"
-        UILaunchScreen: {}
     
     settings:
       base:
         PRODUCT_NAME: vipPolice
         PRODUCT_BUNDLE_IDENTIFIER: com.vippolice.app
         SWIFT_VERSION: 5.9
-        TARGETED_DEVICE_FAMILY: 1
+        TARGETED_DEVICE_FAMILY: "1"
         IPHONEOS_DEPLOYMENT_TARGET: 17.0
         INFOPLIST_FILE: Info.plist
-        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_IDENTITY: ""
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO
-        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
         ENABLE_PREVIEWS: NO
-      
-      configs:
-        Debug:
-          SWIFT_OPTIMIZATION_LEVEL: "-Onone"
-          ENABLE_PREVIEWS: YES
-        Release:
-          SWIFT_OPTIMIZATION_LEVEL: "-O"
-          ENABLE_PREVIEWS: NO
-          SWIFT_COMPILATION_MODE: wholemodule
-    
-    scheme:
-      testTargets: []
-      gatherCoverageData: false
-
-schemes:
-  vipPolice:
-    build:
-      targets:
-        vipPolice: all
-    run:
-      config: Debug
-    archive:
-      config: Release
+        SWIFT_OPTIMIZATION_LEVEL: "-O"
+        SWIFT_COMPILATION_MODE: wholemodule

@@ -226,20 +226,4 @@ struct BenefitEditSheet: View {
     }
 }
 
-#Preview {
-    let sampleAccount = MemberAccount(
-        platform: .meituan,
-        benefits: [
-            Benefit(
-                title: "红包",
-                type: .oneTime,
-                value: "¥5",
-                resetDay: nil,
-                expiryDate: Date(),
-                constraint: "满30可用"
-            )
-        ]
-    )
-    
-    VerificationView(account: sampleAccount) { _ in }
-}
+// Preview removed for compatibility

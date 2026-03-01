@@ -165,31 +165,4 @@ struct BenefitDetailRow: View {
     }
 }
 
-#Preview {
-    let sampleAccount = MemberAccount(
-        platform: .meituan,
-        benefits: [
-            Benefit(
-                title: "红包",
-                type: .oneTime,
-                value: "¥5",
-                resetDay: nil,
-                expiryDate: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
-                constraint: "满30可用"
-            ),
-            Benefit(
-                title: "免邮券",
-                type: .periodic,
-                value: "3张",
-                resetDay: 1,
-                expiryDate: nil,
-                constraint: nil
-            )
-        ]
-    )
-    
-    NavigationStack {
-        AccountDetailView(account: sampleAccount)
-            .environmentObject(DataManager())
-    }
-}
+// Preview removed for compatibility

@@ -195,6 +195,4 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+// Preview removed for compatibility

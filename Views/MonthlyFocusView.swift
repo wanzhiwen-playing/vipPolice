@@ -200,7 +200,4 @@ struct TaskRow: View {
     }
 }
 
-#Preview {
-    MonthlyFocusView()
-        .environmentObject(DataManager())
-}
+// Preview removed for compatibility

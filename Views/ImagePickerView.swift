@@ -178,7 +178,4 @@ struct ImagePickerView: View {
     }
 }
 
-#Preview {
-    ImagePickerView()
-        .environmentObject(DataManager())
-}
+// Preview removed for compatibility

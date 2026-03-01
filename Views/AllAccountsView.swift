@@ -132,7 +132,4 @@ struct AccountRow: View {
     }
 }
 
-#Preview {
-    AllAccountsView()
-        .environmentObject(DataManager())
-}
+// Preview removed for compatibility
