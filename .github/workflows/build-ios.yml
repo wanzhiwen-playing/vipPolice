@@ -10,6 +10,10 @@ jobs:
     # 使用 macos-14 以支持 iOS 17/18 开发
     runs-on: macos-14
     
+    # 添加发布所需权限
+    permissions:
+      contents: write
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
