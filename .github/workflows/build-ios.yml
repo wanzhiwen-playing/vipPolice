@@ -52,12 +52,14 @@ jobs:
         mkdir -p Payload
         cp -R build/vipPolice.xcarchive/Products/Applications/vipPolice.app Payload/
         
+        # 移除所有可能导致 Sideloadly 无法读取的隐藏系统文件
+        find Payload -name ".DS_Store" -type f -delete
+        
         # 使用原生 codesign 进行简单伪签（确保所有文件被递归签名）
         codesign --force --deep --sign - Payload/vipPolice.app
         
-        # 确保只压缩内容，去掉所有可能的隐藏文件或不兼容的资源分支
-        # 使用 zip 时使用 -q (quiet) -r (recursive) --symlinks
-        zip -qr --symlinks vipPolice.ipa Payload
+        # 使用 Apple 官方的 ditto 命令进行归档，确保不会包含 __MACOSX 这种导致 Sideloadly 解析失败的拓展属性文件夹
+        ditto -c -k --keepParent Payload vipPolice.ipa
         echo "IPA generated successfully."
         ls -lh vipPolice.ipa
     
