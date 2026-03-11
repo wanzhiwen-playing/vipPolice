@@ -46,20 +46,18 @@ jobs:
           ENABLE_PREVIEWS=NO \
           COMPILER_INDEX_STORE_ENABLE=NO
     
-    - name: Export IPA (Manual Payload)
-      # 由于没有证书，我们手动创建符合 iOS 安装规范的 Payload 目录，并进行简单的 ldid 签名以满足部分工具验证
+    - name: Create Payload Structure
+      # 由于没有证书，我们需要非常标准地创建 Payload 结构，并将它打成正确的 zip (ipa) 格式
       run: |
-        brew install ldid
         mkdir -p Payload
-        cp -r build/vipPolice.xcarchive/Products/Applications/*.app Payload/
+        cp -R build/vipPolice.xcarchive/Products/Applications/vipPolice.app Payload/
         
-        # 伪签名以满足 Sideloadly 格式要求
-        # ldid -S Payload/*.app
+        # 使用原生 codesign 进行简单伪签（确保所有文件被递归签名）
+        codesign --force --deep --sign - Payload/vipPolice.app
         
-        # 使用 codesign 进行特权伪签
-        codesign -f -s - Payload/*.app
-        
-        zip -r vipPolice.ipa Payload
+        # 确保只压缩内容，去掉所有可能的隐藏文件或不兼容的资源分支
+        # 使用 zip 时使用 -q (quiet) -r (recursive) --symlinks
+        zip -qr --symlinks vipPolice.ipa Payload
         echo "IPA generated successfully."
         ls -lh vipPolice.ipa
     
