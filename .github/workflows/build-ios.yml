@@ -57,7 +57,7 @@ jobs:
         # ldid -S Payload/*.app
         
         # 使用 codesign 进行特权伪签
-        codesign -f -s - --entitlements /dev/null Payload/*.app
+        codesign -f -s - Payload/*.app
         
         zip -r vipPolice.ipa Payload
         echo "IPA generated successfully."
