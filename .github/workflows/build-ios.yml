@@ -54,7 +54,10 @@ jobs:
         cp -r build/vipPolice.xcarchive/Products/Applications/*.app Payload/
         
         # 伪签名以满足 Sideloadly 格式要求
-        ldid -S Payload/*.app
+        # ldid -S Payload/*.app
+        
+        # 使用 codesign 进行特权伪签
+        codesign -f -s - --entitlements /dev/null Payload/*.app
         
         zip -r vipPolice.ipa Payload
         echo "IPA generated successfully."
